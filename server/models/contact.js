@@ -14,8 +14,31 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Contact.init({
-    userId: DataTypes.INTEGER,
-    friendId: DataTypes.INTEGER
+    userId: {
+      type : DataTypes.INTEGER,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "User ID can't be empty"
+        }, 
+        notEmpty : {
+          msg : "User ID can't be empty"
+        }
+      }
+    },
+    friendId: {
+      type : DataTypes.INTEGER,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "Friend ID can't be empty"
+        }, 
+        notEmpty : {
+          msg : "Friend ID can't be empty"
+        }
+      }
+    },
+    alias : DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Contact',

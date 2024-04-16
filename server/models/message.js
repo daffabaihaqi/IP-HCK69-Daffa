@@ -14,9 +14,42 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Message.init({
-    senderId: DataTypes.INTEGER,
-    message: DataTypes.TEXT,
-    stickerId: DataTypes.INTEGER
+    senderId: {
+      type : DataTypes.INTEGER,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "Sender ID can't be empty"
+        }, 
+        notEmpty : {
+          msg : "Sender ID can't be empty"
+        }
+      }
+    },
+    message: {
+      type : DataTypes.TEXT,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "Message can't be empty"
+        }, 
+        notEmpty : {
+          msg : "Message can't be empty"
+        }
+      }
+    },
+    stickerId: {
+      type : DataTypes.INTEGER,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "Sticker ID can't be empty"
+        }, 
+        notEmpty : {
+          msg : "Sticker ID can't be empty"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Message',

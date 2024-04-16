@@ -14,8 +14,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PurchasedSticker.init({
-    userId: DataTypes.INTEGER,
-    stickerId: DataTypes.INTEGER
+    userId: {
+      type : DataTypes.INTEGER,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "User ID can't be empty"
+        }, 
+        notEmpty : {
+          msg : "User ID can't be empty"
+        }
+      }
+    },
+    stickerId: {
+      type : DataTypes.INTEGER,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "Sticker ID can't be empty"
+        }, 
+        notEmpty : {
+          msg : "Sticker ID can't be empty"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'PurchasedSticker',

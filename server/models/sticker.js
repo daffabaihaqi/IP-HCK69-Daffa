@@ -14,8 +14,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Sticker.init({
-    name: DataTypes.STRING,
-    url: DataTypes.STRING
+    title: {
+      type : DataTypes.STRING,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "Title can't be empty!"
+        }, 
+        notEmpty : {
+          msg : "Title can't be empty"
+        }
+      }
+    },
+    url: {
+      type : DataTypes.STRING, 
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "URL can't be empty!"
+        }, 
+        notEmpty : {
+          msg : "URL can't be empty"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Sticker',
