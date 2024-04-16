@@ -10,13 +10,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       senderId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull : false,
+        references : {
+          model : {
+            tableName : "Users"
+          }, 
+          key : 'id'
+        }
       },
       message: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull : false
       },
       stickerId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references : {
+          model : {
+            tableName : "Stickers"
+          },
+          key : "id"
+        }
       },
       createdAt: {
         allowNull: false,

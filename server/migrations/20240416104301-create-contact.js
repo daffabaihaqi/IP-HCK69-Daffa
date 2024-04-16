@@ -10,10 +10,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull : false,
+        references : {
+          model : {
+            tableName : "Users"
+          }, 
+          key : 'id'
+        }
       },
       friendId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull : false,
+        references : {
+          model : {
+            tableName : "Users"
+          }, 
+          key : 'id'
+        }
+      },
+      alias : {
+        type : Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
