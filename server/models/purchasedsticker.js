@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      PurchasedSticker.belongsTo(models.User, {foreignKey : "userId"});
+      PurchasedSticker.belongsTo(models.Sticker, {foreignKey : "stickerId"});
     }
   }
   PurchasedSticker.init({

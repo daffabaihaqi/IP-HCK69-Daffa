@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Message.belongsTo(models.User, {foreignKey : "senderId"});
+      Message.belongsTo(models.Sticker, {foreignKey : "stickerId"});
     }
   }
   Message.init({
@@ -40,15 +42,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     stickerId: {
       type : DataTypes.INTEGER,
-      allowNull : false,
-      validate : {
-        notNull : {
-          msg : "Sticker ID can't be empty"
-        }, 
-        notEmpty : {
-          msg : "Sticker ID can't be empty"
-        }
-      }
     }
   }, {
     sequelize,
