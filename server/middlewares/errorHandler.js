@@ -3,9 +3,11 @@ module.exports = function errorHandler(error, req, res, next) {
     if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
         res.status(400).json({message : error.errors[0].message});
     } else if (error.name === "Invalid Input") {
-        res.status(400).json({message : "Username and Password is Required"});
+        res.status(400).json({message : "Email and Password is Required"});
+    } else if (error.name === "Input Not Allowed") {
+        res.status(400).json({message : "Input Not Allowed"})
     } else if (error.name === "Invalid User") {
-        res.status(401).json({message: "Invalid Username or Password"})
+        res.status(401).json({message: "Invalid Email or Password"})
     } else if (error.name === "Invalid Token") {
         res.status(401).json({message : error.name});
     } else if (error.name === "JsonWebTokenError") {

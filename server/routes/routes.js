@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const userController = require('../controllers/userController');
+const contactController = require('../controllers/contactController');
 const authentication = require('../middlewares/authentication');
 
 router.get("/", (req, res) => {
@@ -22,6 +23,8 @@ router.put("/update-profile", userController.updateProfile);
 router.get("/contacts", (req, res) => {
 
 });
+
+router.post("/contacts", contactController.addNewContact);
 
 router.get("/contacts/:id", (req, res) => {
 
