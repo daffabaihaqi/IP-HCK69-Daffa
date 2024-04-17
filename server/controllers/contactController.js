@@ -4,7 +4,20 @@ const { Contact,User } = require('../models');
 class contactController {
     static async displayContacts(req, res, next) {
         try {
-            
+            const userId = req.user.id;
+
+            const contacts = await Contact.findAll({
+                where : {
+                    userId
+                },
+                include : {
+                    model : User
+                }
+            });
+
+            res.status(200).json({
+                contacts
+            });
         } catch (error) {
             next(error);
         };
@@ -52,7 +65,13 @@ class contactController {
 
     static async displayPerContact(req, res, next) {
         try {
-            
+            const friendId = req.params.id;
+
+            const friend = await User.findByPk(friendId);
+
+            res.status(200).json({
+                friend
+            })
         } catch (error) {
             next(error);
         };

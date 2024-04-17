@@ -20,15 +20,11 @@ router.use(authentication);
 
 router.put("/update-profile", userController.updateProfile);
 
-router.get("/contacts", (req, res) => {
-
-});
+router.get("/contacts", contactController.displayContacts);
 
 router.post("/contacts", contactController.addNewContact);
 
-router.get("/contacts/:id", (req, res) => {
-
-});
+router.get("/contacts/:id", contactController.displayPerContact);
 
 router.patch("/contacts/:id", (req, res) => {
 
