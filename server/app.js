@@ -1,11 +1,17 @@
-/*
-    npx sequelize-cli model:generate --name User --attributes email:string,password:string,firstName:string,lastName:string
+"use strict";
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+};
 
-    npx sequelize-cli model:generate --name Sticker --attributes name:string,url:string
+const express = require("express");
+const app = express();
+const port = 3000;
+const cors = require('cors');
 
-    npx sequelize-cli model:generate --name Contact --attributes userId:integer,friendId:integer
+const routes = require('./routes/routes');
 
-    npx sequelize-cli model:generate --name Message --attributes senderId:integer,message:text,stickerId:integer
+app.get("/", routes);
 
-    npx sequelize-cli model:generate --name PurchasedSticker --attributes userId:integer,stickerId:integer
-*/
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
