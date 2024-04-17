@@ -1,6 +1,6 @@
 "use strict"
 const jwt = require('jsonwebtoken');
-const secret = process.env.SECRET_JWT_CODE;
+const secret = "rahasia";
 
 const createToken = (payload) => {
     const token = jwt.sign(payload, secret);

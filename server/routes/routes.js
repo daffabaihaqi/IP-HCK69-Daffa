@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const userController = require('../controllers/userController');
+const authentication = require('../middlewares/authentication');
 
 router.get("/", (req, res) => {
     res.status(200).json({
@@ -13,6 +14,8 @@ router.get("/", (req, res) => {
 router.post("/register", userController.registerUser);
 
 router.post("/login", userController.loginUser);
+
+router.use(authentication);
 
 router.put("/update-profile", userController.updateProfile);
 

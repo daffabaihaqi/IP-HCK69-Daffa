@@ -15,7 +15,7 @@ class userController {
                 data : {id : newUser.id, email : newUser.email}
             });
         } catch (error) {
-            console.log(error);
+            next(error);
         };
     };
 
@@ -27,7 +27,7 @@ class userController {
                 throw {name : "Invalid Input"}
             }
 
-            const user = User.findOne({
+            const user = await User.findOne({
                 where : {
                     email
                 }
@@ -52,12 +52,39 @@ class userController {
                 email : user.email,
             });
         } catch (error) {
-            console.log(error);
+            next(error);
         }
     };
 
     static async updateProfile(req, res, next) {
+        try {
+            const userId = req.user.id;
+            const {firstName, lastName, profilePicture} = req.body;
 
+            // if (!firstName || !lastName || !profilePicture) {
+            //     throw {name : "Invalid Input"}
+            // };
+
+            const user = await User.findByPk(userId);
+
+            if (!user) {
+                throw {name : "Not Found"}
+            }
+
+            const updated = await user.update(req.body);
+
+            res.status(200).json({
+                message : "Berhasil mengupdate user",
+                data : {
+                    id : updated.id,
+                    email : updated.email,
+                    firstName : updated.firstName,
+                    lastName : updated.lastName
+                }
+            })
+        } catch (error) {
+            next(error);
+        }
     };
 };
 
