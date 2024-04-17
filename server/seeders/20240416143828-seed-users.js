@@ -23,7 +23,9 @@ module.exports = {
       el.password = hash;
 
       return el;
-    })
+    });
+
+    await queryInterface.bulkInsert('Users', users);
   },
 
   async down (queryInterface, Sequelize) {
@@ -33,5 +35,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };
