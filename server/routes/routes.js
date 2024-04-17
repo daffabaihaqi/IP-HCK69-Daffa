@@ -26,9 +26,7 @@ router.post("/contacts", contactController.addNewContact);
 
 router.get("/contacts/:id", contactController.displayPerContact);
 
-router.patch("/contacts/:id", (req, res) => {
-
-});
+router.patch("/contacts/:id", contactController.changeContactName);
 
 router.get("/messages", (req, res) => {
 

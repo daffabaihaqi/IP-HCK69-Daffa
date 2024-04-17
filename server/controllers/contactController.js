@@ -65,12 +65,18 @@ class contactController {
 
     static async displayPerContact(req, res, next) {
         try {
+            const userId = req.user.id;
             const friendId = req.params.id;
 
-            const friend = await User.findByPk(friendId);
+            const contact = await Contact.findOne({
+                where : {
+                    userId,
+                    friendId
+                }
+            });
 
             res.status(200).json({
-                friend
+                contact
             })
         } catch (error) {
             next(error);
@@ -79,7 +85,27 @@ class contactController {
 
     static async changeContactName(req, res, next) {
         try {
-            
+            const userId = req.user.id;
+            const friendId = req.params.id;
+            const {alias} = req.body;
+
+            const contact = await Contact.findOne({
+                where : {
+                    userId,
+                    friendId
+                }
+            });
+
+            if (!contact) {
+                throw {name : "Not Found"}
+            };
+
+            const updatedContact = await contact.update({alias});
+
+            res.status(200).json({
+                message : "Contact name updated",
+                friend : updatedContact
+            });
         } catch (error) {
             next(error);
         }
