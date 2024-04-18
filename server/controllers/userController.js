@@ -96,14 +96,14 @@ class userController {
 
     static async updateProfile(req, res, next) {
         try {
-            const userId = req.user.id;
+            const UserId = req.user.id;
             const {firstName, lastName, profilePicture} = req.body;
 
             // if (!firstName || !lastName || !profilePicture) {
             //     throw {name : "Invalid Input"}
             // };
 
-            const user = await User.findByPk(userId);
+            const user = await User.findByPk(UserId);
 
             if (!user) {
                 throw {name : "Not Found"}

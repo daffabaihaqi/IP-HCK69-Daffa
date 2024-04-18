@@ -30,11 +30,15 @@ router.get("/contacts/:id", contactController.displayPerContact);
 
 router.patch("/contacts/:id", contactController.changeContactName);
 
-router.get("/messages/:id", (req, res) => {
+router.post("/messages", (req, res) => {
 
 });
 
-router.post("/messages/:id", (req, res) => {
+router.get("/conversations", (req, res) => {
+
+});
+
+router.get("/conversations/:id", (req, res) => {
 
 });
 

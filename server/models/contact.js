@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Contact.belongsTo(models.User, {foreignKey : "userId"});
-      Contact.belongsTo(models.User, {foreignKey : "friendId"});
+      Contact.belongsTo(models.User, {foreignKey : "UserId"});
+      Contact.belongsTo(models.User, {foreignKey : "FriendId"});
     }
   }
   Contact.init({
-    userId: {
+    UserId: {
       type : DataTypes.INTEGER,
       allowNull : false,
       validate : {
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    friendId: {
+    FriendId: {
       type : DataTypes.INTEGER,
       allowNull : false,
       validate : {

@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      PurchasedSticker.belongsTo(models.User, {foreignKey : "userId"});
-      PurchasedSticker.belongsTo(models.Sticker, {foreignKey : "stickerId"});
+      PurchasedSticker.belongsTo(models.User, {foreignKey : "UserId"});
+      PurchasedSticker.belongsTo(models.Sticker, {foreignKey : "StickerId"});
     }
   }
   PurchasedSticker.init({
-    userId: {
+    UserId: {
       type : DataTypes.INTEGER,
       allowNull : false,
       validate : {
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    stickerId: {
+    StickerId: {
       type : DataTypes.INTEGER,
       allowNull : false,
       validate : {

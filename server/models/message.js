@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Message.belongsTo(models.User, {foreignKey : "senderId"});
-      Message.belongsTo(models.Sticker, {foreignKey : "stickerId"});
+      Message.belongsTo(models.User, {foreignKey : "SenderId"});
+      Message.belongsTo(models.Sticker, {foreignKey : "StickerId"});
+      Message.belongsTo(models.Conversation, {foreignKey : "ConversationId"});
     }
   }
   Message.init({
-    senderId: {
+    SenderId: {
       type : DataTypes.INTEGER,
       allowNull : false,
       validate : {
@@ -40,8 +41,20 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    stickerId: {
+    StickerId: {
       type : DataTypes.INTEGER,
+    },
+    ConversationId : {
+      type : DataTypes.INTEGER,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : "Conversation ID can't be empty"
+        }, 
+        notEmpty : {
+          msg : "Converstion ID can't be empty"
+        }
+      }
     }
   }, {
     sequelize,

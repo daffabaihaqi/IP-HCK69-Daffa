@@ -4,11 +4,11 @@ const { Contact,User } = require('../models');
 class contactController {
     static async displayContacts(req, res, next) {
         try {
-            const userId = req.user.id;
+            const UserId = req.user.id;
 
             const contacts = await Contact.findAll({
                 where : {
-                    userId
+                    UserId 
                 },
                 include : {
                     model : User
@@ -25,23 +25,23 @@ class contactController {
 
     static async addNewContact(req, res, next) {
         try {
-            const userId = req.user.id;
-            const {friendId} = req.body;
+            const UserId = req.user.id;
+            const {FriendId} = req.body;
 
-            const friend = await User.findByPk(friendId);
+            const friend = await User.findByPk(FriendId);
 
             if (!friend) {
                 throw {name : "Not Found"}
             };
 
-            if (friendId === userId) {
+            if (FriendId === UserId) {
                 throw {name : "Input Not Allowed"}
             }
 
             const isFriend = await Contact.findOne({
                 where : {
-                    userId,
-                    friendId
+                    UserId,
+                    FriendId
                 }
             });
 
@@ -50,8 +50,8 @@ class contactController {
             }
 
             const newContact = await Contact.create({
-                userId,
-                friendId
+                UserId,
+                FriendId 
             });
 
             res.status(201).json({
@@ -65,13 +65,13 @@ class contactController {
 
     static async displayPerContact(req, res, next) {
         try {
-            const userId = req.user.id;
-            const friendId = req.params.id;
+            const UserId = req.user.id;
+            const FriendId = req.params.id;
 
             const contact = await Contact.findOne({
                 where : {
-                    userId,
-                    friendId
+                    UserId,
+                    FriendId
                 }
             });
 
@@ -85,14 +85,14 @@ class contactController {
 
     static async changeContactName(req, res, next) {
         try {
-            const userId = req.user.id;
-            const friendId = req.params.id;
+            const UserId = req.user.id;
+            const FriendId = req.params.id;
             const {alias} = req.body;
 
             const contact = await Contact.findOne({
                 where : {
-                    userId,
-                    friendId
+                    UserId,
+                    FriendId
                 }
             });
 
@@ -100,7 +100,7 @@ class contactController {
                 throw {name : "Not Found"}
             };
 
-            const updatedContact = await contact.update({alias});
+            const updatedContact = await contact.update(alias);
 
             res.status(200).json({
                 message : "Contact name updated",

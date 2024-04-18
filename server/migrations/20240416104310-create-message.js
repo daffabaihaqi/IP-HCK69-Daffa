@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      senderId: {
+      SenderId: {
         type: Sequelize.INTEGER,
         allowNull : false,
         references : {
@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull : false
       },
-      stickerId: {
+      StickerId: {
         type: Sequelize.INTEGER,
         references : {
           model : {
