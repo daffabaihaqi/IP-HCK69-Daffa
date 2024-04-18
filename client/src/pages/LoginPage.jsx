@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { localRequest } from "../utils/axios";
+import { apiRequest } from "../utils/axios";
 
 function LoginPage() {
     const [userData, setUserData] = useState({
@@ -14,7 +14,7 @@ function LoginPage() {
         event.preventDefault();
 
         try {
-            const { data } = await localRequest({
+            const { data } = await apiRequest({
                 method: "POST",
                 url: "/login",
                 data: userData
