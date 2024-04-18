@@ -28,11 +28,11 @@ router.get("/contacts/:id", contactController.displayPerContact);
 
 router.patch("/contacts/:id", contactController.changeContactName);
 
-router.get("/messages", (req, res) => {
+router.get("/messages/:id", (req, res) => {
 
 });
 
-router.post("/messages", (req, res) => {
+router.post("/messages/:id", (req, res) => {
 
 });
 
