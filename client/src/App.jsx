@@ -3,6 +3,7 @@ import { Outlet, RouterProvider, createBrowserRouter, redirect } from 'react-rou
 import './App.css'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import MainPage from './pages/MainPage'
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     children : [
       {
         path : "",
-        element : <></>
+        element : <MainPage/>
       }
     ]
   }

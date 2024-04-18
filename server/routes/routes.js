@@ -16,6 +16,8 @@ router.post("/register", userController.registerUser);
 
 router.post("/login", userController.loginUser);
 
+router.post("/google-login", userController.googleLogin);
+
 router.use(authentication);
 
 router.put("/update-profile", userController.updateProfile);

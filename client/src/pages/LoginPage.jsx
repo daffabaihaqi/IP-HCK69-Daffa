@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { apiRequest } from "../utils/axios";
 
 function LoginPage() {
@@ -9,6 +9,38 @@ function LoginPage() {
     });
 
     const navigate = useNavigate();
+
+    async function handleCredentialResponse(response) {
+        // console.log("Encoded JWT ID token: " + response.credential);
+        try {
+            const { data } = await apiRequest({
+                method: "POST",
+                url: "/google-login",
+                headers: {
+                    google_token: response.credential
+                }
+            });
+
+            localStorage.setItem("token", data.access_token);
+            navigate("/")
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: "982258102041-eo1doeutrvrckku3fqiv4t05ue50q6qj.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"),
+                { theme: "outline", size: "large" }  // customization attributes
+            );
+            // google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+    }, [])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -71,6 +103,9 @@ function LoginPage() {
                         <button type="submit" className="bg-blue-500 py-2 rounded text-slate-50">Login</button>
                     </div>
                 </form>
+                <div className="px-52">
+                    <div id="buttonDiv"></div>
+                </div>
                 <div className="px-52">
                     <p>Don't have account? <NavLink to="/register"><span className="text-blue-700">Create an account</span></NavLink></p>
                 </div>
