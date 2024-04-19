@@ -13,7 +13,7 @@ function MainPage() {
 
     return (
         <div className="flex flex-row h-screen justify-center items-center bg-sky-100">
-            <div className="grid grid-cols-6">
+            <div className="grid grid-cols-6 gap-3">
                 <SideBar />
                 <ContactList />
                 <ChatRoom />

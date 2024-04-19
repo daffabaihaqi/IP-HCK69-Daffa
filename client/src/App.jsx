@@ -7,14 +7,6 @@ import MainPage from './pages/MainPage'
 
 const router = createBrowserRouter([
   {
-    path : "/register",
-    element : <RegisterPage/>
-  }, 
-  {
-    path : "/login",
-    element : <LoginPage/>
-  }, 
-  {
     path : "/",
     element : <>
       <Outlet/>
@@ -28,6 +20,14 @@ const router = createBrowserRouter([
         element : <MainPage/>
       }
     ]
+  },
+  {
+    path : "/register",
+    element : <RegisterPage/>
+  }, 
+  {
+    path : "/login",
+    element : <LoginPage/>
   }
 ])
 
