@@ -4,6 +4,8 @@ const router = express.Router();
 
 const userController = require('../controllers/userController');
 const contactController = require('../controllers/contactController');
+const messageController = require('../controllers/messageController');
+const conversationController = require('../controllers/conversationController');
 const authentication = require('../middlewares/authentication');
 
 router.get("/", (req, res) => {
@@ -30,17 +32,11 @@ router.get("/contacts/:id", contactController.displayPerContact);
 
 router.patch("/contacts/:id", contactController.changeContactName);
 
-router.post("/messages", (req, res) => {
+router.post("/messages", messageController.addMessage);
 
-});
+router.get("/conversations", conversationController.displayConversations);
 
-router.get("/conversations", (req, res) => {
-
-});
-
-router.get("/conversations/:id", (req, res) => {
-
-});
+router.get("/conversations/:id", conversationController.displayPerConversation);
 
 
 module.exports = router;
