@@ -1,5 +1,5 @@
 import SideBar from "../components/Sidebar";
-import ContactList from "../components/ContactList";
+import MessageList from "../components/MessageList";
 import ChatRoom from "../components/ChatRoom";
 import RegisterPage from "./RegisterPage";
 
@@ -13,9 +13,9 @@ function MainPage() {
 
     return (
         <div className="flex flex-row h-screen justify-center items-center bg-sky-100">
-            <div className="grid grid-cols-6 gap-3">
+            <div className="grid grid-cols-12 rounded-lg overflow-hidden h-3/4 shadow-lg">
                 <SideBar />
-                <ContactList />
+                <MessageList />
                 <ChatRoom />
             </div>
         </div>

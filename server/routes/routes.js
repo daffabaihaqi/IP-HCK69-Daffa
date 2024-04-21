@@ -38,5 +38,7 @@ router.get("/conversations", conversationController.displayConversations);
 
 router.get("/conversations/:id", conversationController.displayPerConversation);
 
+router.post("/conversations", conversationController.addConversation);
+
 
 module.exports = router;

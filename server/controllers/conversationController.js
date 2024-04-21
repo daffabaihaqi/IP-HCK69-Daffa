@@ -100,6 +100,7 @@ class conversationController {
 
   static async addConversation(req, res, next) {
     try {
+        
     } catch (error) {
       next(error);
     }
