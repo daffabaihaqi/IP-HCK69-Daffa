@@ -7,6 +7,7 @@ function LoginPage() {
         email: "",
         password: ""
     });
+    // const [isLoading, setIsLoading] = useState(true);
 
     const navigate = useNavigate();
 
@@ -52,7 +53,7 @@ function LoginPage() {
                 data: userData
             });
 
-            localStorage.setItem("token", data.access_token)
+            localStorage.setItem("token", data.token)
             navigate("/")
         } catch (error) {
             console.log(error);

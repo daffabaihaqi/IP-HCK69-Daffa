@@ -22,6 +22,8 @@ router.post("/google-login", userController.googleLogin);
 
 router.use(authentication);
 
+router.get("/user-data", userController.getUserData);
+
 router.put("/update-profile", userController.updateProfile);
 
 router.get("/contacts", contactController.displayContacts);

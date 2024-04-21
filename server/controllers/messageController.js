@@ -6,13 +6,14 @@ class messageController {
     static async addMessage(req, res, next) {
         try {
             const SenderId = req.user.id;
-            const {message, StickerId, ConversationId} = req.body;
+            const {message, ConversationId} = req.body;
+
+            const conversationId = +ConversationId;
     
             const newMessage = await Message.create({
                 SenderId,
                 message,
-                StickerId,
-                ConversationId
+                ConversationId : conversationId
             });
     
             res.status(201).json({

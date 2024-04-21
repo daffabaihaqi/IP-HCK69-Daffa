@@ -45,18 +45,29 @@ class conversationController {
                 },
               ],
             },
+            {
+              model : Message
+            }
           ],
         },
       });
 
-      let user_list = [];
+      let details = [];
 
       conversations.forEach((participan) => {
-        console.log(participan);
+        let detail = {};
+        let user_list = [];
+        let recent_message = {};
         participan.Conversation.parti.forEach((p) => {
           let { firstName, lastName, profilePicture } = p.User;
           user_list.push({ firstName, lastName, profilePicture });
         });
+
+        recent_message = participan.Conversation.Messages[0];
+
+        detail.user_list = user_list;
+        detail.recent_message = recent_message;
+        details.push(detail);
       });
 
       // let conversations = await Conversation.findAll({
@@ -67,7 +78,7 @@ class conversationController {
       // })
 
       res.status(200).json({
-        user_list,
+        details,
         conversations,
       });
     } catch (error) {

@@ -94,6 +94,20 @@ class userController {
         }
     };
 
+    static async getUserData(req, res, next) {
+        try {
+            const UserId = req.user.id;
+
+            const user = await User.findByPk(UserId);
+
+            res.status(200).json({
+                user
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
+
     static async updateProfile(req, res, next) {
         try {
             const UserId = req.user.id;
