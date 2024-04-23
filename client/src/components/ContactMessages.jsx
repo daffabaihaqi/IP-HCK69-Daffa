@@ -1,10 +1,17 @@
 
-function ContactMessages({ convoList }) {
+function ContactMessages({ convoList, handleConvo }) {
+    const handleClick = (conversationId) => {
+        handleConvo(conversationId); 
+    };
 
     return (
         <div className="flex flex-col gap-5">
             {convoList.map((convo) => (
-                <div className="flex gap-2 hover:cursor-pointer">
+                <div 
+                    className="flex gap-2 hover:cursor-pointer"
+                    key={convo.conversation_id}
+                    onClick={() => handleClick(convo.conversation_id)}
+                >
                     <img
                         src={convo.user_list[0].profilePicture} alt="..."
                         className="shadow-lg rounded-full w-16 h-16 align-middle border-none object-cover"
